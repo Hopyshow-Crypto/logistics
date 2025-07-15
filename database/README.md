@@ -41,7 +41,7 @@ This directory contains the complete MySQL database structure for the LogiFlow T
 
 ## Setup Instructions
 
-### Option 1: phpMyAdmin Import
+### Option 1: phpMyAdmin Import (Recommended for MySQL2/Express)
 1. Open phpMyAdmin in your browser
 2. Create a new database named `logiflow_transport`
 3. Select the database
@@ -57,19 +57,19 @@ This directory contains the complete MySQL database structure for the LogiFlow T
 mysql -u root -p -e "CREATE DATABASE logiflow_transport;"
 
 # Import schema
-mysql -u root -p logiflow_transport < 01_schema.sql
+mysql -u root -p logiflow_transport < database/01_schema.sql
 
 # Import seed data
-mysql -u root -p logiflow_transport < 02_seed_data.sql
+mysql -u root -p logiflow_transport < database/02_seed_data.sql
 
 # Import procedures
-mysql -u root -p logiflow_transport < 03_procedures_functions.sql
+mysql -u root -p logiflow_transport < database/03_procedures_functions.sql
 ```
 
 ### Option 3: Single File Import
 You can also concatenate all files and import as one:
 ```bash
-cat 01_schema.sql 02_seed_data.sql 03_procedures_functions.sql > complete_database.sql
+cat database/01_schema.sql database/02_seed_data.sql database/03_procedures_functions.sql > complete_database.sql
 mysql -u root -p logiflow_transport < complete_database.sql
 ```
 
@@ -116,7 +116,7 @@ After importing the seed data, you can use these demo accounts:
 
 ## Configuration
 
-### Backend Connection
+### Backend Connection (Express + MySQL2)
 Update your backend `.env` file:
 ```env
 DB_HOST=localhost
@@ -146,6 +146,14 @@ The database includes configurable settings in the `system_settings` table:
 - Stored procedures handle business logic efficiently
 - Connection pooling is recommended for production
 
+## MySQL2 with Express Integration
+
+This database is specifically optimized for:
+- **MySQL2**: Latest MySQL driver for Node.js
+- **Express.js**: RESTful API endpoints
+- **phpMyAdmin**: Easy database management
+- **Connection Pooling**: High-performance database connections
+
 ## Support
 
 For database-related issues:
@@ -161,3 +169,4 @@ For database-related issues:
 - **Character Set**: UTF-8 (utf8mb4)
 - **Storage Engine**: InnoDB
 - **Collation**: utf8mb4_unicode_ci
+- **Node.js**: MySQL2 driver compatible

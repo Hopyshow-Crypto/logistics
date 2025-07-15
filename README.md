@@ -141,20 +141,26 @@ VITE_APP_NAME=LogiFlow Transport
 
 ## 📊 Database Schema
 
-### Key Tables
-- **users**: User authentication and profiles
-- **drivers**: Driver-specific information and status
-- **bookings**: Transportation requests and orders
-- **booking_items**: Detailed item information
-- **locations**: Pickup and delivery addresses
-- **tracking_updates**: Real-time status updates
-- **payments**: Transaction records
+The database files are located in the `database/` folder:
 
-### Relationships
-- Users can be customers, drivers, or admins
-- Bookings link customers to drivers
-- Items belong to bookings
-- Tracking updates provide status history
+- **`database/01_schema.sql`** - Complete database schema with 11 professional tables
+- **`database/02_seed_data.sql`** - Sample data with demo users and realistic bookings
+- **`database/03_procedures_functions.sql`** - Stored procedures and business logic functions
+- **`database/README.md`** - Comprehensive setup guide and documentation
+
+### Setup Instructions
+
+#### Option 1: phpMyAdmin (Recommended)
+1. Create database `logiflow_transport` in phpMyAdmin
+2. Import files in order: `01_schema.sql` → `02_seed_data.sql` → `03_procedures_functions.sql`
+
+#### Option 2: MySQL Command Line
+```bash
+mysql -u root -p -e "CREATE DATABASE logiflow_transport;"
+mysql -u root -p logiflow_transport < database/01_schema.sql
+mysql -u root -p logiflow_transport < database/02_seed_data.sql
+mysql -u root -p logiflow_transport < database/03_procedures_functions.sql
+```
 
 ## 🔐 Authentication & Security
 
